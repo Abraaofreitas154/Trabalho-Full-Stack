@@ -2,21 +2,14 @@
   "name": "frontend",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
+  "description": "Frontend PWA em HTML/CSS/JS vanilla para gerenciamento de produtos e clientes",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "dev": "npx live-server --port=3000 --host=localhost",
+    "build": "echo 'Nenhum build necessário - arquivos estáticos prontos'",
+    "preview": "npx live-server --port=3000 --host=localhost"
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8"
+    "live-server": "^1.2.2"
   }
 }
 
