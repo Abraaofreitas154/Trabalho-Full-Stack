@@ -127,17 +127,37 @@ O frontend estará em: `http://localhost:3000`
 2. Crie um usuário e adicione seu IP à whitelist
 3. Copie a **Connection String** e substitua no `.env` do backend
 
-### 2. Backend - Render (Recomendado)
+### 2. Backend - Render Blueprint (YAML) - RECOMENDADO ✅
 
-1. Acesse [Render](https://render.com) e crie uma conta
-2. Crie um novo **Web Service**
-3. Conecte seu repositório do GitHub
-4. Configure:
-   - **Build Command**: `npm install`
-   - **Start Command**: `node server.js`
-   - **Root Directory**: `backend`
-5. Adicione a variável de ambiente `MONGODB_URI` com a URI do Atlas
-6. O Render fornecerá uma URL pública (ex: `https://sua-api.onrender.com`)
+O projeto já possui o arquivo `render.yaml` configurado para deploy automático via **Render Blueprint**.
+
+1. Acesse [Render Blueprints](https://dashboard.render.com/blueprint/new)
+2. Conecte seu repositório do GitHub
+3. Clique em **Apply Blueprint**
+4. Configure a variável `MONGODB_URI` com a URI do MongoDB Atlas
+5. O Render criará automaticamente o Web Service
+
+**O `render.yaml` configurado:**
+```yaml
+services:
+  - type: web
+    name: trabalho-fullstack-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true
+```
+
+> 💡 Ao fazer push para o `main`, o Render faz deploy automático (`autoDeploy: true`)
 
 ### 3. Frontend - Vercel (Recomendado)
 
